@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPEchoServer", "UDPEchoSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPNumberReceiver", "UDPNumberReceiver\UDPNumberReceiver.csproj", "{27566940-A98C-4177-93CB-73E07B29BAC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPBroadFanOutServer", "UDPBroadFanOutServer\UDPBroadFanOutServer.csproj", "{7E974010-505C-4CE9-BE4B-3DB94DBB3C71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{27566940-A98C-4177-93CB-73E07B29BAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27566940-A98C-4177-93CB-73E07B29BAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27566940-A98C-4177-93CB-73E07B29BAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E974010-505C-4CE9-BE4B-3DB94DBB3C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E974010-505C-4CE9-BE4B-3DB94DBB3C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E974010-505C-4CE9-BE4B-3DB94DBB3C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E974010-505C-4CE9-BE4B-3DB94DBB3C71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,7 +13,7 @@ namespace UDPNumberReceiver
             UdpClient udpServer = new UdpClient(7000);
 
             //Creates an IPEndPoint to record the IP Address and port number of the sender.  
-            IPAddress ip = IPAddress.Parse("192.168.103.148");
+            //IPAddress ip = IPAddress.Parse("192.168.103.148");
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 7000);
             //IPEndPoint object will allow us to read datagrams sent from another source.
 
