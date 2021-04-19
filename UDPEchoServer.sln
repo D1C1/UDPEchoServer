@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPEchoServer", "UDPEchoServer\UDPEchoServer.csproj", "{56A6322D-DAE3-4313-AA40-A2590CF2BECE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPNumberReceiver", "UDPNumberReceiver\UDPNumberReceiver.csproj", "{27566940-A98C-4177-93CB-73E07B29BAC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{56A6322D-DAE3-4313-AA40-A2590CF2BECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56A6322D-DAE3-4313-AA40-A2590CF2BECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56A6322D-DAE3-4313-AA40-A2590CF2BECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27566940-A98C-4177-93CB-73E07B29BAC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27566940-A98C-4177-93CB-73E07B29BAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27566940-A98C-4177-93CB-73E07B29BAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27566940-A98C-4177-93CB-73E07B29BAC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA435B34-B6BA-4503-9E3C-F5A41BBFA4D9}
 	EndGlobalSection
 EndGlobal
