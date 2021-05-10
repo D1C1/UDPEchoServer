@@ -1,22 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace UDPBroadFanOutServer
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             //Creates a UdpClient for reading incoming data.
-            UdpClient udpServer = new UdpClient(7000);
+            UdpClient udpServer = new UdpClient(7065);
 
             //Creates an IPEndPoint to record the IP Address and port number of the sender.  
             //IPAddress ip = IPAddress.Parse("192.168.103.148");
-            IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 7000);
+            IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 7065);
             //IPEndPoint object will allow us to read datagrams sent from another source.
 
             try
@@ -29,37 +32,49 @@ namespace UDPBroadFanOutServer
 
                 string receivedData = Encoding.ASCII.GetString(receiveBytes);
                 string[] data = receivedData.Split(' ');
-                string clientName = data[0];
                 //string text = data[1] + data[2];
 
                 Console.WriteLine(receivedData);
                 //Console.WriteLine("Received from: " + clientName.ToString() + " " + text.ToString());
-                SensorDataModel recData = JsonConvert.DeserializeObject<SensorDataModel>(receivedData);
-                Console.WriteLine($"{recData.RoomId} temp is {recData.Temperature}");
+                Userstories recData = JsonConvert.DeserializeObject<Userstories>(receivedData);
+                Console.WriteLine($"{recData.Id}  {recData.Title} temp is {recData.Description}");
+
                 Console.WriteLine("This message was sent from " +
                                   RemoteIpEndPoint.Address.ToString() +
                                   " on their port number " +
                                   RemoteIpEndPoint.Port.ToString());
-
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://apimentalshowerindoor.azurewebsites.net/api/IndoorClimate");
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    streamWriter.Write(recData);
-                }
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    var result = streamReader.ReadToEnd();
-                }
+                await Post<Userstories, Userstories>("https://proeverest.azurewebsites.net/api/UserStories", recData);
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+        public static async Task<TOut> Post<TIn, TOut>(string uri, TIn item)
+        {
+            using HttpClient client = new HttpClient();
+            string jsonStr = JsonConvert.SerializeObject(item);
+            StringContent requestContent = new StringContent(jsonStr, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(uri, requestContent);
+            string responseContent = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode) // all 2xx status codes
+            {
+                //Console.WriteLine(jsonString);
+                TOut data = JsonConvert.DeserializeObject<TOut>(responseContent);
+                return data;
+            }
+            throw new KeyNotFoundException($"Status code={response.StatusCode} Message={responseContent}");
+        }
+
+        public class Userstories
+        {
+            public int Id { get; set; }
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public int BussinessValue { get; set; }
+            public string State { get; set; }
         }
     }
 }
